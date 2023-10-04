@@ -1,4 +1,4 @@
-import http from 'http';
+import * as http from 'http';
 import {readFile} from 'fs/promises';
 
 const hostname = '127.0.0.1';
