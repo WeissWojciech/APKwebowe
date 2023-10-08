@@ -14,7 +14,7 @@ const server = http.createServer(async(req,res) => {
     if (url === '/') {
         res.statusCode = 200;
 
-        const home = await readFile('./index.html');
+        const home = await readFile('./index.html','utf-8');
 
         res.setHeader('content-type', 'text/html');
         res.write(home);
@@ -23,7 +23,7 @@ const server = http.createServer(async(req,res) => {
     else if (url === '/dziekujemy') {
         res.statusCode = 200;
 
-        const thankYou = await readFile('./thankYouPage.html');
+        const thankYou = await readFile('./thankYouPage.html', 'utf-8');
 
         res.setHeader('content-type', 'text/html');
         res.write(thankYou);
