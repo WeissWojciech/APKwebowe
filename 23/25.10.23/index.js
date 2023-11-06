@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: true }))
         res.redirect('/');
     });
     
-    const db = new sqlite3.Database('baza1.sql')
+    const db = new sqlite3.Database('data.sqlite')
 
     app.get('/api', (req, res) => {
         const apiLinks = {
@@ -50,6 +50,26 @@ app.use(express.urlencoded({ extended: true }))
           }
         });
     });
+    app.get('/api/subjects', (req, res) => {
+        db.all('SELECT * FROM subjects', (err, rows) => {
+          if (err) {
+            console.error(err);
+            res.status(500).json({ error: 'Internal Server Error' });
+          } else {
+            res.json(rows);
+          }
+        });
+    });
+    app.get('api/students/:id', (req,res)=>{
+      db.all('SELECT id FROM students WHERE id = 4', (err, rows) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+          res.json(rows);
+        }
+      });
+    })
   
     app.listen(port, () => {
         console.log(`Aplikacja działa na porcie ${port}`);
