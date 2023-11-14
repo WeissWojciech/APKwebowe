@@ -26,14 +26,15 @@ app.post('/kontakt',async(req,res) =>{
 })
 
 app.get('/',(req,res) => {
-    res.sendFile(`${__dirname}/index.html`)
+    res.sendFile(`${__dirname}/home.html`)
 })
 
 app.get('/kontakt',(req,res) =>{
-    res.sendFile(`${__dirname}/form.html`)
+    res.sendFile(`${__dirname}/kontakt.html`)
 })
 
 app.use('/api',test)
+
 app.listen(PORT, ()=>{
-    console.log(`[server]: Server is running at http://localhost:${PORT}`);
+    console.log(`Aplikacja działa na porcie ${PORT}`);
 })

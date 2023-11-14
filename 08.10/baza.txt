@@ -1,0 +1,55 @@
+CREATE DATABASE baza_node
+USE baza_node;
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL,
+  `name` text NOT NULL,
+  `surname` text NOT NULL,
+  `email` text NOT NULL
+);
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL,
+  `name` text DEFAULT NULL,
+  `hoursAWeek` int(11) DEFAULT NULL
+);
+
+create table messages(
+    id int AUTO_INCREMENT PRIMARY key,
+    email text not null,
+    topic text not null,
+    content text not null
+);
+
+INSERT INTO `students` (`id`, `name`, `surname`, `email`) VALUES
+(1, 'Anna', 'Kowalska', 'anna.kowalska@example.com'),
+(2, 'Jan', 'Nowak', 'jan.nowak@example.com'),
+(3, 'Maria', 'Nowak', 'maria.nowak@example.com'),
+(4, 'Piotr', 'Nowak', 'piotr.nowak@example.com'),
+(5, 'Katarzyna', 'Wójcik', 'katarzyna.wojcik@example.com'),
+(6, 'Andrzej', 'Wójcik', 'andrzej.wojcik@example.com'),
+(7, 'Aleksandra', 'Kowalczyk', 'aleksandra.kowalczyk@example.com'),
+(8, 'Michał', 'Kowalczyk', 'michal.kowalczyk@example.com'),
+(9, 'Wojciech', 'Lewandowski', 'wojciech.lewandowski@example.com'),
+(10, 'Magdalena', 'Lewandowska', 'magdalena.lewandowska@example.com'),
+(11, 'Tomasz', 'Kaczmarek', 'tomasz.kaczmarek@example.com'),
+(12, 'Ewa', 'Kaczmarek', 'ewa.kaczmarek@example.com'),
+(13, 'Łukasz', 'Zieliński', 'lukasz.zielinski@example.com'),
+(14, 'Natalia', 'Zielińska', 'natalia.zielinska@example.com'),
+(15, 'Grzegorz', 'Szymański', 'grzegorz.szymanski@example.com');
+
+INSERT INTO `subjects` (`id`, `name`, `hoursAWeek`) VALUES
+(1, 'Matematyka', 5),
+(2, 'Fizyka', 4),
+(3, 'Chemia', 3),
+(4, 'Biologia', 3),
+(5, 'Historia', 4),
+(6, 'Geografia', 1),
+(7, 'Informatyka', 4),
+(8, 'Język angielski', 3),
+(9, 'Język niemiecki', 3),
+(10, 'WOS', 2),
+(11, 'BHP', 1),
+(12, 'Wychowanie fizyczne', 3);
+
+do .env -> DATABASE_URL="mysql://root:@localhost:3306/baza_node"
