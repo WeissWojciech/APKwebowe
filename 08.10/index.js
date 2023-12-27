@@ -1,40 +1,38 @@
-const express  = require("express")
-const test = require("./router.js")
-const {PrismaClient} = require("@prisma/client")
+import express from "express";
+import * as test from "./router.js";
+import { PrismaClient } from "@prisma/client";
 
-
-const prisma = new PrismaClient()
-const app = express()
+const prisma = new PrismaClient();
+const app = express();
 const PORT = 3000;
 
-app.use(express.static('public'));
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.post('/kontakt',async(req,res) =>{
-    const body = req.body
-    console.log(body.imie)
+app.post('/kontakt', async (req, res) => {
+    const body = req.body;
+    console.log(body.imie);
     const user = {
-        name:   body.imie,
+        name: body.imie,
         email: body.email,
-        topic: body.szefy,
+        topic: body.tem,
         content: body.tresc
-      }
+    };
 
-    await prisma.messages.create({data: user});
-      res.redirect(302, '/')
-})
+    await prisma.messages.create({ data: user });
+    res.redirect(302, '/');
+});
 
-app.get('/',(req,res) => {
-    res.sendFile(`${__dirname}/home.html`)
-})
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/home.html`);
+});
 
-app.get('/kontakt',(req,res) =>{
-    res.sendFile(`${__dirname}/kontakt.html`)
-})
+app.get('/kontakt', (req, res) => {
+    res.sendFile(`${__dirname}/kontakt.html`);
+});
 
-app.use('/api',test)
+app.use('/api', test);
 
-app.listen(PORT, ()=>{
+app.listen(PORT, () => {
     console.log(`Aplikacja działa na porcie ${PORT}`);
-})
+});
